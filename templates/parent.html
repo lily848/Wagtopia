@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="../static/styles2.css">
+</head>
+<body>
+    <form action="" method="">
+        <div class="all">
+            <div class="title">
+            <h1>
+                Book Appointment
+            </h1>
+            </div>
+
+        <div class="entry"> 
+            <div>
+                <label for="parent">Parent Name:</label>
+                <br>
+                <select name="parent" id="parent" required>
+                    {% for p in parents %}
+                    <option value="{{p.parent_name}}">{{p.parent_name}}</option>
+                    {% endfor %}
+                </select>
+            </div>
+
+            <div>
+                <label for="dog">Dog:</label>
+                <br>
+                <select name="dog" id="dog" required>
+                    {% for d in dogs %}
+                    <option value="{{d.dog_name}}">{{d.dog_name}}</option>
+                    {% endfor %}
+                </select>
+            </div>
+
+            <div>
+                <label for="service">Service:</label>
+                <br>
+                <select name="service" id="service" required>
+                    {% for s in services %}
+                    <option value="{{s.service}}">{{d.dog_name}}</option>
+                    {% endfor %}
+                </select>
+            </div>
+
+            <div>
+                <label for="groomer">Groomer:</label>
+                <br>
+                <select name="groomer" id="groomer" required>
+                    <option value="walter">Walter</option>
+                    <option value="rarity">Rarity</option>
+                    <option value="daniel">Daniel</option>
+                    <option value="lily">Lily</option>
+                    <option value="rina">Rina</option>
+                </select>
+            </div>
+
+            <div>
+                <label for="date">Date:</label>
+                <br>
+                <input type="date" id:"date" name:"date" required>
+            </div>
+
+            <div>
+                <label for="time">Time:</label>
+                <br>
+                <div class="time">
+                <input type="time" id:"time" name:"time" required>
+                </div>
+            </div>
+
+        
+        </div>
+            <div class="submit">
+                <br>
+                <input type="submit">
+            </div>
+          
+        </div>
+    </form>
+</body>
+</html>

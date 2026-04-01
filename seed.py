@@ -49,7 +49,7 @@ cur.execute(
     "INSERT INTO services (service_name, duration_minutes) VALUES ('Wash', 60)"
 );
 cur.execute(
-    "INSERT INTO services (service_name, duration_minutes) VALUES ('Dry', 60)"
+    "INSERT INTO services (service_name, duration_minutes) VALUES ('Grooming', 60)"
 );
 
 #Bookings

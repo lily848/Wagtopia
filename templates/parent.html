@@ -19,9 +19,9 @@
             <div>
                 <label for="parent">Parent Name:</label>
                 <br>
-                <select name="parent" id="parent" required>
+                <select name="parent" id="parent" required onchange="filterDog()">
                     {% for p in parents %}
-                    <option value="{{p.parent_name}}">{{p.parent_name}}</option>
+                    <option value="{{p.parent_id}}">{{p.parent_name}}</option>
                     {% endfor %}
                 </select>
             </div>
@@ -31,7 +31,7 @@
                 <br>
                 <select name="dog" id="dog" required>
                     {% for d in dogs %}
-                    <option value="{{d.dog_name}}">{{d.dog_name}}</option>
+                    <option value="{{d.dog_id}}" data-parent-id="{{d.parent_id}}">{{d.dog_name}}</option>
                     {% endfor %}
                 </select>
             </div>
@@ -41,7 +41,7 @@
                 <br>
                 <select name="service" id="service" required>
                     {% for s in services %}
-                    <option value="{{s.service}}">{{d.dog_name}}</option>
+                    <option value="{{s.service_name}}">{{s.service_name}}</option>
                     {% endfor %}
                 </select>
             </div>
@@ -50,11 +50,9 @@
                 <label for="groomer">Groomer:</label>
                 <br>
                 <select name="groomer" id="groomer" required>
-                    <option value="walter">Walter</option>
-                    <option value="rarity">Rarity</option>
-                    <option value="daniel">Daniel</option>
-                    <option value="lily">Lily</option>
-                    <option value="rina">Rina</option>
+                    {% for g in groomers %}
+                    <option value="{{g.groomer_name}}">{{g.groomer_name}}</option>
+                    {% endfor %}
                 </select>
             </div>
 
@@ -81,5 +79,21 @@
           
         </div>
     </form>
+    <script>
+        function filterDog() {
+            const parentID = document.getElementById("parent").value;
+            const selectD = document.getElementById("dog");
+            const optionsD = selectD.querySelectorAll("option");
+            optionsD.forEach(x => {
+                const show = x.dataset.parentId === parentId;
+                if (show){
+                    x.style.display="";
+                } else{
+                    x.style.display="none";
+                }
+            })
+        }
+        filterDog();
+    </script>
 </body>
 </html>

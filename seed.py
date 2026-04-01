@@ -56,19 +56,19 @@ cur.execute(
 cur.execute(
     """
     INSERT INTO bookings (parent_id, dog_id, groomer_id, service_id, start_time, end_time, appointment_date) 
-    VALUES (1, 2, 1, 1, '2:00', '3:00' , '2026-03-31')
+    VALUES (1, 2, 1, 1, '15:00', '16:00' , '2026-03-31')
     """
 );
 cur.execute(
     """
     INSERT INTO bookings (parent_id, dog_id, groomer_id, service_id, start_time, end_time, appointment_date) 
-    VALUES (2, 4, 2, 1, '4:00', '5:00' , '2026-03-31')
+    VALUES (2, 4, 2, 1, '09:00', '10:00' , '2026-03-31')
     """
 );
 cur.execute(
     """
     INSERT INTO bookings (parent_id, dog_id, groomer_id, service_id, start_time, end_time, appointment_date) 
-    VALUES (3, 6, 3, 1, '6:00', '7:00' , '2026-03-30')
+    VALUES (3, 6, 3, 1, '12:00', '13:00' , '2026-03-30')
     """
 );
 

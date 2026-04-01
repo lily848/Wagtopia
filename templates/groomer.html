@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="../static/styles3.css">
+</head>
+<body>
+    <form action="" method="">
+        <div class="all">
+            <div class="title">
+            <h1>
+                Appointments
+            </h1>
+            </div>
+
+            <div>
+                <label for="groomer"></label>
+                <select name="groomer" id="groomer" required >
+                    <option value="" disabled selected>Select Groomer</option>
+                    {% for g in groomers %}
+                    <option value="{{g.groomer_id}}">{{g.groomer_name}}</option>
+                    {% endfor %}
+                </select>
+            </div>
+            <br>
+            <div class="container">
+                <div>
+                    Date:
+                </div>
+                <div>
+                    Time:
+                </div>
+                <div>
+                    Parent:
+                </div>
+                <div>
+                    Phone Number:
+                </div>
+                <div>
+                    Dog:
+                </div>
+                <div>
+                    Service:
+                </div>
+                
+            </div>
+            <div class="container">
+                <div>
+                    Date:
+                </div>
+                <div>
+                    Time:
+                </div>
+                <div>
+                    Parent:
+                </div>
+                <div>
+                    Phone Number:
+                </div>
+                <div>
+                    Dog:
+                </div>
+                <div>
+                    Service:
+                </div>
+                
+            </div>
+
+
+        
+        </div>
+    </form>
+</body>
+</html>

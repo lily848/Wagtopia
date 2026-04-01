@@ -7,7 +7,7 @@
     <link rel="stylesheet" href="../static/styles2.css">
 </head>
 <body>
-    <form action="" method="">
+    <form action="/book" method="POST">
         <div class="all">
             <div class="title">
             <h1>
@@ -44,7 +44,7 @@
                 <select name="service" id="service" required>
                     <option value="" disabled selected>Select Service</option>
                     {% for s in services %}
-                    <option value="{{s.service_name}}">{{s.service_name}}</option>
+                    <option value="{{s.service_id}}">{{s.service_name}}</option>
                     {% endfor %}
                 </select>
             </div>
@@ -72,22 +72,13 @@
                 <div class="time">
                     <select name="time" id="time" required>
                         <option value="" disabled selected>Select a time</option>
-                        <option value="09:00">9:00</option>
-                        <option value="10:00">10:00</option>
-                        <option value="11:00">11:00</option>
-                        <option value="12:00">12:00</option>
-                        <option value="13:00">13:00</option>
-                        <option value="14:00">14:00</option>
-                        <option value="15:00">15:00</option>
-                        <option value="16:00">16:00</option>
                     </select>
                 </div>
             </div>
-
-        
         </div>
-            <div class="submit">
-                <br>
+            <br>
+            <br>
+            <div class="s">
                 <input type="submit">
             </div>
           
@@ -124,7 +115,16 @@
                     selectT.innerHTML='<option value="" disabled selected> No available times </option>';
                     selectT.disabled=true;
                 }else{
-                    selectT.innerHTML='<option value="" disabled selected> Select a time </option>'
+                    //console.log(data.available);
+                    selectT.innerHTML = '<option value="" disabled selected>Select a time</option>';
+                        data.available.forEach(time => {
+                            const opt = document.createElement("option");
+                            opt.value = time;
+                            opt.textContent = time;
+                            selectT.appendChild(opt);
+                        });
+                        selectT.disabled = false;
+
                 }
             })
         }

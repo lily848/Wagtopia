@@ -5,6 +5,12 @@
     justify-content: center;
 }
 
+br{
+    display: block; /* Forces the <br> to be a block element */
+    content: "";    /* Clears default rendering */
+    margin-top: 9px; /* Adds space above the break */
+}
+
 .title{
     display:flex;
     flex-direction: column;
@@ -13,7 +19,7 @@
 .entry{
     display:flex;
     flex-direction: column;
-    font: 15px sans-serif;
+    font: 14px sans-serif;
     font-weight: 200;
     gap: 2rem;
     /* background-color: blueviolet; */
@@ -21,12 +27,16 @@
 
 label{
     display: flex;
-    /* background-color: aqua; */
-    width:70%;
     
 }
 
-label[type="parent"]{
+.s{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* label[type="parent"]{
     background-color: rgb(255, 255, 255);
     width: 100%;
     font: 1em sans-serif;
@@ -36,13 +46,13 @@ label[type="parent"]{
     gap: 2rem;
     border: 2px solid rgb(220, 217, 217);
     cursor: pointer;
-}
-.form:-label{
+} */
+/* .form:-label{
     color:brown;
     background-color: aqua;
-}
+} */
 
-input[type="date"]{
+/* input[type="date"]{
     background-color: rgb(255, 255, 255);
     width: 100%;
     font: 1em sans-serif;
@@ -52,9 +62,9 @@ input[type="date"]{
     gap: 2rem;
     border: 2px solid rgb(220, 217, 217);
     cursor: pointer;
-}
+} */
 
-input[type="time"]{
+/* input[type="time"]{
     background-color: rgb(255, 255, 255);
     width: 100%;
     font: 1em sans-serif;
@@ -64,7 +74,7 @@ input[type="time"]{
     border: 2px solid rgb(220, 217, 217);
     cursor: pointer;
     align-items: center;
-}
+} */
 
 
 

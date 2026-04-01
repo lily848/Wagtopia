@@ -26,29 +26,7 @@
             </select>
         </div>
         <br>
-        <div id="appointments">
-            <!-- <p>No Appointments</p> -->
-            <!-- <div class="container">
-                <div>
-                    Date:
-                </div>
-                <div>
-                    Time:
-                </div>
-                <div>
-                    Parent:
-                </div>
-                <div>
-                    Phone Number:
-                </div>
-                <div>
-                    Dog:
-                </div>
-                <div>
-                    Service:
-                </div>
-            </div>   -->
-        </div>
+        <div id="appointments"></div>
     </div>
 
     <script>
@@ -67,12 +45,12 @@
                         const element = document.createElement("div");
                         element.className="container";
                         element.innerHTML=`
-                            <div>Date: ${a.appointment_date}</div>
-                            <div>Time: ${a.start_time}</div>
-                            <div>Parent: ${a.parent_name}</div>
-                            <div>Phone Number: ${a.phone}</div>
-                            <div>Dog: ${a.dog_name}</div>
-                            <div>Service: ${a.service_name} </div>
+                            <div><span>Date:</span> ${a.appointment_date}</div>
+                            <div><span>Time:</span> ${a.start_time}</div>
+                            <div><span>Parent:</span> ${a.parent_name}</div>
+                            <div><span>Phone Number:</span> ${a.phone}</div>
+                            <div><span>Dog:</span> ${a.dog_name}</div>
+                            <div><span>Service:</span> ${a.service_name} </div>
                         `;
                         appointmentDiv.appendChild(element);
                     });

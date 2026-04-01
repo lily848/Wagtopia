@@ -26,7 +26,7 @@ CREATE TABLE IF NOT EXISTS groomers (
 -- Services (wash, grooming, etc.)
 CREATE TABLE IF NOT EXISTS services (
     service_id       INTEGER PRIMARY KEY AUTOINCREMENT,
-    service_name     TEXT    NOT NULL,  -- e.g. 'wash', 'grooming'
+    service_name     TEXT    NOT NULL,
     duration_minutes INTEGER NOT NULL
 );
 
@@ -37,7 +37,7 @@ CREATE TABLE IF NOT EXISTS bookings (
     dog_id      INTEGER NOT NULL,
     groomer_id  INTEGER NOT NULL,
     service_id  INTEGER NOT NULL,
-    start_time  TEXT    NOT NULL,  -- store as ISO 8601: '2026-04-01 10:00'
+    start_time  TEXT    NOT NULL,
     end_time    TEXT    NOT NULL,
     created_at  TEXT    DEFAULT (datetime('now')),
     appointment_date TEXT NOT NULL,

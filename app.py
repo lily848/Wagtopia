@@ -48,9 +48,9 @@ def book():
     time = request.form["time"]
     appointment_date = request.form["date"]
     start_dt = datetime.strptime(time, "%H:%M")
-    print("DEBUG:", start_dt)
+    # print("DEBUG:", start_dt)
     end_time = (start_dt + timedelta(hours=1)).strftime("%H:%M")
-    print("DEBUG:", end_time)
+    # print("DEBUG:", end_time)
     db = get_db()
     db.execute(
         """
@@ -59,13 +59,30 @@ def book():
         """,(parent_id, dog_id, groomer_id, service_id, time, end_time, appointment_date)
     )
     db.commit()
-    print("DEBUG: booking inserted")
+    # print("DEBUG: booking inserted")
     return redirect("/")
 
 @app.route("/groomer")
-def groomer();
-    db = get_db();
+def groomer():
+    db = get_db()
     groomers = db.execute("SELECT * FROM groomers").fetchall()
+    return render_template("groomer.html", groomers=groomers)
+
+@app.route("/groomer-appointments")
+def groomer_appointments():
+    db = get_db()
+    groomer_id = request.args.get("groomer_id")
+    appointments = db.execute("""
+        SELECT b.appointment_date, b.start_time, b.end_time,
+               p.parent_name, p.phone, d.dog_name, s.service_name
+        FROM bookings b
+        LEFT JOIN parents  p ON b.parent_id  = p.parent_id
+        LEFT JOIN dogs     d ON b.dog_id     = d.dog_id
+        LEFT JOIN services s ON b.service_id = s.service_id
+        WHERE b.groomer_id = ?
+        ORDER BY b.appointment_date, b.start_time
+    """, (groomer_id)).fetchall()
+    return jsonify([dict(a) for a in appointments])
 
 
 

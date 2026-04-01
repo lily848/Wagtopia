@@ -20,6 +20,7 @@
                 <label for="parent">Parent Name:</label>
                 <br>
                 <select name="parent" id="parent" required onchange="filterDog()">
+                    <option value="" disabled selected>Select Parent</option>
                     {% for p in parents %}
                     <option value="{{p.parent_id}}">{{p.parent_name}}</option>
                     {% endfor %}
@@ -30,6 +31,7 @@
                 <label for="dog">Dog:</label>
                 <br>
                 <select name="dog" id="dog" required>
+                    <option value="" disabled selected>Select Dog</option>
                     {% for d in dogs %}
                     <option value="{{d.dog_id}}" data-parent-id="{{d.parent_id}}">{{d.dog_name}}</option>
                     {% endfor %}
@@ -40,6 +42,7 @@
                 <label for="service">Service:</label>
                 <br>
                 <select name="service" id="service" required>
+                    <option value="" disabled selected>Select Service</option>
                     {% for s in services %}
                     <option value="{{s.service_name}}">{{s.service_name}}</option>
                     {% endfor %}
@@ -49,9 +52,10 @@
             <div>
                 <label for="groomer">Groomer:</label>
                 <br>
-                <select name="groomer" id="groomer" required>
+                <select name="groomer" id="groomer" required onchange="fetchTimes()">
+                    <option value="" disabled selected>Select Groomer</option>
                     {% for g in groomers %}
-                    <option value="{{g.groomer_name}}">{{g.groomer_name}}</option>
+                    <option value="{{g.groomer_id}}">{{g.groomer_name}}</option>
                     {% endfor %}
                 </select>
             </div>
@@ -59,14 +63,24 @@
             <div>
                 <label for="date">Date:</label>
                 <br>
-                <input type="date" id:"date" name:"date" required>
+                <input type="date" id="date" name="date" required onchange="fetchTimes()">
             </div>
 
             <div>
                 <label for="time">Time:</label>
                 <br>
                 <div class="time">
-                <input type="time" id:"time" name:"time" required>
+                    <select name="time" id="time" required>
+                        <option value="" disabled selected>Select a time</option>
+                        <option value="09:00">9:00</option>
+                        <option value="10:00">10:00</option>
+                        <option value="11:00">11:00</option>
+                        <option value="12:00">12:00</option>
+                        <option value="13:00">13:00</option>
+                        <option value="14:00">14:00</option>
+                        <option value="15:00">15:00</option>
+                        <option value="16:00">16:00</option>
+                    </select>
                 </div>
             </div>
 
@@ -81,10 +95,11 @@
     </form>
     <script>
         function filterDog() {
-            const parentID = document.getElementById("parent").value;
+            const parentId = document.getElementById("parent").value;
             const selectD = document.getElementById("dog");
             const optionsD = selectD.querySelectorAll("option");
             optionsD.forEach(x => {
+                if (!x.dataset.parentId) return;
                 const show = x.dataset.parentId === parentId;
                 if (show){
                     x.style.display="";
@@ -92,8 +107,27 @@
                     x.style.display="none";
                 }
             })
+            selectD.value="";
         }
         filterDog();
+
+        function fetchTimes() {
+            const groomerId = document.getElementById("groomer").value;
+            const date = document.getElementById("date").value;
+            const selectT= document.getElementById("time");
+            if (!groomerId || !date) return;
+
+            fetch(`/available-times?groomer_id=${groomerId}&date=${date}`)
+            .then(r => r.json()) 
+            .then(data => {
+                if (data.available.length === 0){
+                    selectT.innerHTML='<option value="" disabled selected> No available times </option>';
+                    selectT.disabled=true;
+                }else{
+                    selectT.innerHTML='<option value="" disabled selected> Select a time </option>'
+                }
+            })
+        }
     </script>
 </body>
 </html>

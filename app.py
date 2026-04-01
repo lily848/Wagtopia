@@ -1,5 +1,5 @@
 import sqlite3
-from flask import Flask, render_template
+from flask import Flask, render_template, request, jsonify
 
 app = Flask(__name__)
 
@@ -24,7 +24,17 @@ def parent():
     services = db.execute("SELECT * FROM services").fetchall()
     return render_template("parent.html", parents=parents, dogs=dogs, groomers=groomers, services=services)
 
-
+ALL_TIMES = ["09:00", "10:00", "11:00", "12:00", "13:00", "14:00", "15:00", "16:00"]
+@app.route("/available-times")
+def available_times():
+    groomer_id = request.args.get("groomer_id")
+    date = request.args.get("date")
+    db = get_db()
+    taken_times = db.execute(
+        "SELECT start_time FROM bookings WHERE groomer_id = ? AND appointment_date = ?",(groomer_id,date)
+    ).fetchall()
+    availible = [t for t in ALL_TIMES if t not in taken_times]
+    return jsonify({"availible" : availible})
 
 if __name__ == "__main__":
     app.run(debug=True)
